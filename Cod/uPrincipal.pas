@@ -29,6 +29,7 @@ type
     JvEnterAsTab1: TJvEnterAsTab;
     Panel5: TPanel;
     BitBtn1: TBitBtn;
+    Configurar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure bBuscarClick(Sender: TObject);
     procedure bBuscarTodosClick(Sender: TObject);
@@ -53,7 +54,7 @@ var
 
 implementation
 
-uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA;
+uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA, GraphicEx;
 {$R *.dfm}
 
 procedure TForm1.ActivarBotones(Mostrar: boolean);
@@ -173,10 +174,7 @@ begin
   Begin
     dmAdministrativo.AbrirSEmpresa;
 
-    if ModoPruebas then
-      dmBasesDatos.ConectarDB(dmBasesDatos.RutaEjecucion + dmAdministrativo.sEmpresaFE_DIRDATOS.Value)
-    else
-      dmBasesDatos.ConectarDB(dmBasesDatos.RutaEjecucion + dmAdministrativo.sEmpresaFE_DIRDATOS.Value);
+    dmBasesDatos.ConectarDB(dmAdministrativo.sEmpresaFE_DIRDATOS.Value);
   End
   Else
   begin
