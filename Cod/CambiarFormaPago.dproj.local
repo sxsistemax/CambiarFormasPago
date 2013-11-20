@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2013/11/15 15:24:23.178.pas,C:\Users\Edwin\Documents\RAD Studio\Projects\Unit1.pas=C:\Prj\CambiarFormaPago\uPrincipal.pas</Transaction>
+    <Transaction>2013/11/15 15:24:23.179.dfm,C:\Users\Edwin\Documents\RAD Studio\Projects\Unit1.dfm=C:\Prj\CambiarFormaPago\uPrincipal.dfm</Transaction>
+    <Transaction>2013/11/15 15:24:53.326.dproj,C:\Users\Edwin\Documents\RAD Studio\Projects\Project2.dproj=C:\Prj\CambiarFormaPago\Cod\CambiarFormaPago.dproj</Transaction>
+    <Transaction>2013/11/15 15:29:40.097.pas,C:\Prj\CambiarFormaPago\uPrincipal.pas=</Transaction>
+    <Transaction>2013/11/15 15:29:40.097.dfm,C:\Prj\CambiarFormaPago\uPrincipal.dfm=</Transaction>
+    <Transaction>2013/11/19 07:35:04.209.pas,C:\Prj\CambiarFormaPago\Cod\Unit2.pas=C:\Prj\CambiarFormaPago\Cod\uDetallePago.pas</Transaction>
+    <Transaction>2013/11/19 07:35:04.209.dfm,C:\Prj\CambiarFormaPago\Cod\Unit2.dfm=C:\Prj\CambiarFormaPago\Cod\uDetallePago.dfm</Transaction>
+    <Transaction>2013/11/19 12:01:36.779.pas,C:\Prj\CambiarFormaPago\Cod\Unit1.pas=C:\Prj\CompartidosA2\uUtilidadesSPA.pas</Transaction>
+  </Transactions>
+</BorlandProject>
