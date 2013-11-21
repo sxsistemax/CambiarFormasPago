@@ -6,7 +6,8 @@ uses
   uBaseDatosA2 in '..\..\CompartidosA2\uBaseDatosA2.pas' {dmBasesDatos: TDataModule},
   uTablasConBlobAdministrativo in '..\..\CompartidosA2\uTablasConBlobAdministrativo.pas' {dmAdministrativo: TDataModule},
   uDetallePago in 'uDetallePago.pas' {frDetallePago},
-  uUtilidadesSPA in '..\..\CompartidosA2\uUtilidadesSPA.pas';
+  uUtilidadesSPA in '..\..\CompartidosA2\uUtilidadesSPA.pas',
+  uConfiguracion in 'uConfiguracion.pas' {frConfiguracion};
 
 {$R *.res}
 
@@ -17,5 +18,6 @@ begin
   Application.CreateForm(TdmBasesDatos, dmBasesDatos);
   Application.CreateForm(TdmAdministrativo, dmAdministrativo);
   Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrConfiguracion, frConfiguracion);
   Application.Run;
 end.

@@ -40,6 +40,8 @@ type
     procedure ActivarBotones( Mostrar : boolean);
     procedure BitBtn1Click(Sender: TObject);
     procedure dbGFormasPagoCellClick(Column: TColumn);
+    procedure ConfigurarClick(Sender: TObject);
+    procedure CargarConfiguracion;
   private
     { Private declarations }
 
@@ -54,7 +56,8 @@ var
 
 implementation
 
-uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA, GraphicEx;
+uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA, GraphicEx,
+  uConfiguracion;
 {$R *.dfm}
 
 procedure TForm1.ActivarBotones(Mostrar: boolean);
@@ -122,6 +125,19 @@ begin
   dmAdministrativo.GuardarFormasPago( dmAdministrativo.sOperacionInv,
     dmAdministrativo.sOperacionInvFTI_FORMADEPAGO);
 
+  // Actualiza Alimentos y Bebidas
+  if Trim(DirectorioAyB) <> '' then
+  Begin
+    if dmAdministrativo.a2Transacciones.Locate('FTR_DOCUMENTO', dmAdministrativo.sOperacionInvFTI_DOCUMENTO.Value, []) Then
+    begin
+      dmAdministrativo.a2Transacciones.Edit;
+      dmAdministrativo.GuardarFormasPago( dmAdministrativo.a2Transacciones,
+        dmAdministrativo.a2TransaccionesFTR_FORMADEPAGO);
+      dmAdministrativo.a2Transacciones.Post;
+    end;
+  End;
+
+
   dmAdministrativo.sOperacionInv.Post;
 
   // Borra la tabla
@@ -175,6 +191,9 @@ begin
     dmAdministrativo.AbrirSEmpresa;
 
     dmBasesDatos.ConectarDB(dmAdministrativo.sEmpresaFE_DIRDATOS.Value);
+
+    DirectorioAyB := LeerConfiguracion('DirectorioAyB');
+    CargarConfiguracion;
   End
   Else
   begin
@@ -216,6 +235,22 @@ begin
     dmAdministrativo.tbFormaPago.Next;
 
 
+end;
+
+procedure TForm1.CargarConfiguracion;
+begin
+  if trim( DirectorioAyB) <> '' then
+  begin
+    dmAdministrativo.a2Transacciones.Close;
+    dmBasesDatos.ConectarDbAyB(DirectorioAyB);
+    dmAdministrativo.a2Transacciones.Open;
+  end;
+end;
+
+procedure TForm1.ConfigurarClick(Sender: TObject);
+begin
+  ConfigurarApliacion;
+  CargarConfiguracion;
 end;
 
 end.

@@ -24,6 +24,9 @@ type
     dbTarjeta: TDBLookupComboBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dbTipoPagoExit(Sender: TObject);
+    procedure HabilitarSelectores;
+    procedure dbTipoPagoEnter(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,32 +53,14 @@ Begin
   end;
 End;
 
+procedure TfrDetallePago.dbTipoPagoEnter(Sender: TObject);
+begin
+  HabilitarSelectores;
+end;
+
 procedure TfrDetallePago.dbTipoPagoExit(Sender: TObject);
 begin
-  Case Integer(dbTipoPago.KeyValue) of
-    1   : begin
-            dbBancoTarjeta.Visible := False;
-            dbInstitucion.Visible := True;
-            dbTarjeta.Visible := False;
-          end;
-    2,3 : begin
-            dbBancoTarjeta.Visible := False;
-            dbInstitucion.Visible := False;
-            dbTarjeta.Visible := True;
-          end;
-    4,5,6: Begin
-            ShowMessage( 'Este tipo de pago no puede ser utilizado por esta aplicación.');
-            dbTipoPago.SetFocus;
-          End;
-    else
-          begin
-            dbBancoTarjeta.Visible := True;
-            dbInstitucion.Visible := False;
-            dbTarjeta.Visible := False;
-          end;
-  End
-
-
+  HabilitarSelectores;
 end;
 
 procedure TfrDetallePago.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -92,6 +77,37 @@ begin
     else
       dmAdministrativo.tbFormaPago.Post;
   end;
+end;
+
+procedure TfrDetallePago.FormShow(Sender: TObject);
+begin
+  HabilitarSelectores;
+end;
+
+procedure TfrDetallePago.HabilitarSelectores;
+begin
+  Case Integer(dbTipoPago.KeyValue) of
+    1,2   : begin
+            dbBancoTarjeta.Visible := False;
+            dbInstitucion.Visible := True;
+            dbTarjeta.Visible := False;
+          end;
+    3 : begin
+            dbBancoTarjeta.Visible := False;
+            dbInstitucion.Visible := False;
+            dbTarjeta.Visible := True;
+          end;
+    4,5,6: Begin
+            ShowMessage( 'Este tipo de pago no puede ser utilizado por esta aplicación.');
+            dbTipoPago.SetFocus;
+          End;
+    else
+          begin
+            dbBancoTarjeta.Visible := True;
+            dbInstitucion.Visible := False;
+            dbTarjeta.Visible := False;
+          end;
+  End;
 end;
 
 end.

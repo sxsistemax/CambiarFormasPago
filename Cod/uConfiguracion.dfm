@@ -2,7 +2,7 @@ object frConfiguracion: TfrConfiguracion
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'frConfiguracion'
+  Caption = 'Configuraci'#243'n'
   ClientHeight = 366
   ClientWidth = 619
   Color = clBtnFace
@@ -23,9 +23,16 @@ object frConfiguracion: TfrConfiguracion
     Align = alBottom
     BevelInner = bvLowered
     TabOrder = 0
-    ExplicitLeft = 160
-    ExplicitTop = 288
-    ExplicitWidth = 185
+    object bAceptar: TButton
+      Left = 531
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Aceptar'
+      ModalResult = 1
+      TabOrder = 0
+      OnClick = bAceptarClick
+    end
   end
   object Panel2: TPanel
     Left = 0
@@ -92,10 +99,6 @@ object frConfiguracion: TfrConfiguracion
     Align = alClient
     BevelInner = bvLowered
     TabOrder = 2
-    ExplicitLeft = 152
-    ExplicitTop = 184
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object Label2: TLabel
       Left = 2
       Top = 2
@@ -116,5 +119,9 @@ object frConfiguracion: TfrConfiguracion
   object dgSeleccionarDirectorio: TJvSelectDirectory
     Left = 520
     Top = 16
+  end
+  object JvEnterAsTab1: TJvEnterAsTab
+    Left = 464
+    Top = 8
   end
 end

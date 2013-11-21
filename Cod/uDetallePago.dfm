@@ -14,6 +14,7 @@ object frDetallePago: TfrDetallePago
   OldCreateOrder = False
   Position = poOwnerFormCenter
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -24,7 +25,6 @@ object frDetallePago: TfrDetallePago
     Align = alBottom
     BevelInner = bvLowered
     TabOrder = 0
-    ExplicitTop = 168
     object bAceptar: TButton
       Left = 307
       Top = 6
@@ -43,10 +43,6 @@ object frDetallePago: TfrDetallePago
     Align = alClient
     BevelInner = bvLowered
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = -6
-    ExplicitWidth = 539
-    ExplicitHeight = 190
     object Label2: TLabel
       Left = 15
       Top = 56
@@ -86,7 +82,8 @@ object frDetallePago: TfrDetallePago
       Height = 21
       DataField = 'NombreTipoPago'
       DataSource = Form1.dsFromaPago
-      TabOrder = 0
+      TabOrder = 1
+      OnEnter = dbTipoPagoEnter
       OnExit = dbTipoPagoExit
     end
     object DBEdit1: TDBEdit
@@ -96,7 +93,7 @@ object frDetallePago: TfrDetallePago
       Height = 21
       DataField = 'MontoPago'
       DataSource = Form1.dsFromaPago
-      TabOrder = 1
+      TabOrder = 0
     end
     object dbBancoTarjeta: TDBEdit
       Left = 88

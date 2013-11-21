@@ -4,7 +4,7 @@ object Form1: TForm1
   ActiveControl = bBuscarTodos
   Caption = 'Cambiar Forma Pago'
   ClientHeight = 513
-  ClientWidth = 723
+  ClientWidth = 725
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,17 +19,18 @@ object Form1: TForm1
   object Splitter1: TSplitter
     Left = 0
     Top = 234
-    Width = 723
+    Width = 725
     Height = 3
     Cursor = crVSplit
     Align = alBottom
     ExplicitLeft = -2
     ExplicitTop = 218
+    ExplicitWidth = 723
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 723
+    Width = 725
     Height = 41
     Align = alTop
     BevelInner = bvLowered
@@ -69,7 +70,7 @@ object Form1: TForm1
       OnClick = bBuscarTodosClick
     end
     object Panel5: TPanel
-      Left = 536
+      Left = 538
       Top = 2
       Width = 185
       Height = 37
@@ -124,22 +125,22 @@ object Form1: TForm1
           FFFFFDFDFDF6F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         ParentDoubleBuffered = False
         TabOrder = 1
+        OnClick = ConfigurarClick
       end
     end
   end
   object Panel2: TPanel
     Left = 0
     Top = 41
-    Width = 723
+    Width = 725
     Height = 193
     Align = alClient
     BevelInner = bvLowered
     TabOrder = 1
-    ExplicitHeight = 162
     object dbGOperacionInv: TDBGrid
       Left = 2
       Top = 2
-      Width = 719
+      Width = 721
       Height = 189
       Hint = 'Haga clic en la columna TOTAL PRECIO para mostrar el detalle'
       Align = alClient
@@ -183,7 +184,7 @@ object Form1: TForm1
   object Panel3: TPanel
     Left = 0
     Top = 237
-    Width = 723
+    Width = 725
     Height = 276
     Align = alBottom
     BevelInner = bvLowered
@@ -191,7 +192,7 @@ object Form1: TForm1
     object dbGFormasPago: TDBGrid
       Left = 2
       Top = 43
-      Width = 719
+      Width = 721
       Height = 231
       Align = alClient
       DataSource = dsFromaPago
@@ -252,13 +253,11 @@ object Form1: TForm1
     object Panel4: TPanel
       Left = 2
       Top = 2
-      Width = 719
+      Width = 721
       Height = 41
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 338
-      ExplicitTop = 26
       object Label2: TLabel
         Left = 14
         Top = 16
