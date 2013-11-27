@@ -56,7 +56,7 @@ var
 
 implementation
 
-uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA, GraphicEx,
+uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA,
   uConfiguracion;
 {$R *.dfm}
 
@@ -188,9 +188,9 @@ begin
   // Hace la verificación de sEmpresa.Dat
   if dmBasesDatos.ExisteSEmpresa then
   Begin
-    dmAdministrativo.AbrirSEmpresa;
+    dmBasesDatos.AbrirSEmpresa;
 
-    dmBasesDatos.ConectarDB(dmAdministrativo.sEmpresaFE_DIRDATOS.Value);
+    dmBasesDatos.ConectarDB(dmBasesDatos.sEmpresaFE_DIRDATOS.Value);
 
     DirectorioAyB := LeerConfiguracion('DirectorioAyB');
     CargarConfiguracion;
