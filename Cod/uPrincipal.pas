@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, DB, Grids, DBGrids, JvComponentBase, JvEnterTab,
-  Buttons, JvExDBGrids, JvDBGrid, Variants;
+  Buttons;
 
 type
   TForm1 = class(TForm)
@@ -30,18 +30,17 @@ type
     Panel5: TPanel;
     BitBtn1: TBitBtn;
     Configurar: TBitBtn;
+    bRegistro: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure bBuscarClick(Sender: TObject);
     procedure bBuscarTodosClick(Sender: TObject);
     procedure dbGOperacionInvCellClick(Column: TColumn);
-    procedure SumarFormasPago( PrimerVez : boolean);
     procedure bConfirmarCambiosClick(Sender: TObject);
     procedure bCancelarCambiosClick(Sender: TObject);
-    procedure ActivarBotones( Mostrar : boolean);
     procedure BitBtn1Click(Sender: TObject);
     procedure dbGFormasPagoCellClick(Column: TColumn);
     procedure ConfigurarClick(Sender: TObject);
-    procedure CargarConfiguracion;
+    procedure bRegistroClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -49,6 +48,10 @@ type
     { Public declarations }
     FTotalFormaPago : Double;
     FTotalFormaPagoActual : Double;
+    procedure CargarDatosAplicaion;
+    procedure CargarConfiguracion;
+    procedure ActivarBotones( Mostrar : boolean);
+    procedure SumarFormasPago( PrimerVez : boolean);
   end;
 
 var
@@ -57,8 +60,11 @@ var
 implementation
 
 uses uBaseDatosA2, uTablasConBlobAdministrativo, uDetallePago, uUtilidadesSPA,
-  uConfiguracion;
+  uConfiguracion, uSeguridad, OnGuard;
 {$R *.dfm}
+
+Const
+  IdentificadorAplicacion : TKey = ($69,$BD,$68,$B1,$3E,$DE,$C2,$66,$83,$99,$0F,$9F,$DE,$DD,$1E,$01);
 
 procedure TForm1.ActivarBotones(Mostrar: boolean);
 begin
@@ -152,6 +158,11 @@ begin
   Close;
 end;
 
+procedure TForm1.bRegistroClick(Sender: TObject);
+begin
+  MostrarRegistrado;
+end;
+
 procedure TForm1.dbGOperacionInvCellClick(Column: TColumn);
 begin
   // Carga la tabla de forma de pago
@@ -164,6 +175,14 @@ end;
 
 procedure TForm1.dbGFormasPagoCellClick(Column: TColumn);
 begin
+  if ModoDemo then
+  begin
+    ShowMessage('Está en modo demo, solo puede visualizar los datos pero no puede cambiarlos.');
+    Exit;
+
+  end;
+
+
   if dmAdministrativo.tbFormaPagoTipoPago.Value in [4,5,6] then
   begin
     ShowMessage( 'Este tipo de pago no puede ser modificado');
@@ -183,6 +202,12 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  CargarDatosAplicaion;
+
+  ModoDemo := True;
+
+  ValidarRegistro( ModoDemo) ;
+
   OpcionParametro;
 
   // Hace la verificación de sEmpresa.Dat
@@ -234,7 +259,6 @@ begin
   for I := 1 to RegistroActual - 1 do
     dmAdministrativo.tbFormaPago.Next;
 
-
 end;
 
 procedure TForm1.CargarConfiguracion;
@@ -245,6 +269,11 @@ begin
     dmBasesDatos.ConectarDbAyB(DirectorioAyB);
     dmAdministrativo.a2Transacciones.Open;
   end;
+end;
+
+procedure TForm1.CargarDatosAplicaion;
+begin
+  Key := IdentificadorAplicacion;
 end;
 
 procedure TForm1.ConfigurarClick(Sender: TObject);
