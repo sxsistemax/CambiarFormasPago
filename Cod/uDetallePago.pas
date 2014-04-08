@@ -27,6 +27,7 @@ type
     procedure HabilitarSelectores;
     procedure dbTipoPagoEnter(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure bAceptarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,6 +53,26 @@ Begin
     Free;
   end;
 End;
+
+procedure TfrDetallePago.bAceptarClick(Sender: TObject);
+begin
+   Case Integer(dbTipoPago.KeyValue) of
+    1,2   : begin
+              if dbInstitucion.Text = '' then
+              begin
+                ShowMessage('Debe seleccionar la institucion.');
+                ModalResult := mrNone;
+              end;
+            end;
+      3 : begin
+            if dbTarjeta.Text = '' then
+            begin
+              ShowMessage('Debe seleccionar la tarjeta.');
+              ModalResult := mrNone;
+            end;
+          end;
+  End;  
+end;
 
 procedure TfrDetallePago.dbTipoPagoEnter(Sender: TObject);
 begin

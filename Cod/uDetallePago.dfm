@@ -33,6 +33,7 @@ object frDetallePago: TfrDetallePago
       Caption = 'Aceptar'
       ModalResult = 1
       TabOrder = 0
+      OnClick = bAceptarClick
     end
   end
   object Panel2: TPanel
